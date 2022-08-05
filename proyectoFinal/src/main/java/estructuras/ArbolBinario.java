@@ -134,9 +134,23 @@ public class ArbolBinario<E extends Comparable<E>> {
         this.right = right;
     }
 
-   
+   public static void main(String[] args) {
+         ArbolBinario<Integer> raiz=new ArbolBinario<Integer>(3);
+         raiz.insert(4);
+         //raiz.insert(5);
+         //raiz.insert(2);
+         
+         raiz.setLeft(new ArbolBinario<Integer>(37));
+         System.out.println(raiz);
+         raiz.right=new ArbolBinario<Integer>(49);
+         System.out.println(raiz); 
+         
+         System.out.println(raiz.data);
+         System.out.println(raiz.left.data);
+         System.out.println(raiz.right.data);
+         System.out.println(raiz.isEmpty());
+}
     
     
     
 }
-
