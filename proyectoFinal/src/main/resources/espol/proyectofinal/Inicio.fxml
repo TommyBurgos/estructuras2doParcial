@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+
+<FlowPane id="fondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="840.0" stylesheets="@inicio.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox prefHeight="460.0" prefWidth="530.0">
+         <children>
+            <ImageView id="imagenPrincipal" fitHeight="450.0" fitWidth="420.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@bird%20friends.png" />
+               </image>
+            </ImageView>
+            <VBox prefHeight="200.0" prefWidth="110.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hola, soy Patronus" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Piensa en un animal" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Y yo intentaré adivinarlo" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</FlowPane>

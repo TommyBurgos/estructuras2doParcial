@@ -1,0 +1,13 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+#fondo{
+    -fx-background-image: url('fondo2.gif');
+    -fx-background-size: cover;
+}
+#imagenPrincipal{
+    -fx-width:50%;
+    -fx-height: 80%
+        
+}
