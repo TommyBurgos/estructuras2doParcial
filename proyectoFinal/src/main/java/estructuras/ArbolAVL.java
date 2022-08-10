@@ -99,9 +99,10 @@ public class ArbolAVL<E extends Comparable<E>>   {
         return ad-ai;
     }
     public ArbolAVL validarRec(String resp, ArbolAVL arb){
+        
         if(resp.equals("Si") || resp.equals("si")) return arb.left;
         else if(resp.equals("No")|| resp.equals("no")) return arb.right;
-        System.out.println("Asegurese de estar escribiendo bien la orden");
+        
         return null;
     }
     
@@ -193,6 +194,7 @@ public class ArbolAVL<E extends Comparable<E>>   {
         ArbolAVL nodo7=new ArbolAVL(an2);
         nodo4.addRec("Si", nodo7);
         
+        
         //Lado Derecho principal
         ArbolAVL nodo2=new ArbolAVL(p1);
         raiz2.addRec("No", nodo2);
@@ -209,24 +211,37 @@ public class ArbolAVL<E extends Comparable<E>>   {
         System.out.println("Listo? (Si/No): ");
         String continuar=sc.next();
         ArbolAVL direccion=raiz2;
-        while(continuar.equals("Si") || continuar.equals("si")){
+        while(continuar.equals("Si") || continuar.equals("si") && !((continuar.equals("no")|| continuar.equals("No")))){
             System.out.println("Listo!! Vamos a empezar");
             System.out.println("Te hare unas cuantas preguntas antes de decirte mi respuesta");
             System.out.println("Si deseas salir solo deberas escribir (SALIR) y volveras ");
-            System.out.println("Deberas responder estas preguntas escribiendo Si o No (Si) para continuar");
+            System.out.println("Deberas responder estas preguntas escribiendo Si o No (Escribe Si) para continuar");
             String resp=sc.next();
-            while((resp!="Salir" || resp!="salir") && (direccion.left!=null || direccion.right!=null)){
+            while(!(resp.equals("Salir")|| resp.equals("salir")) && (direccion.left!=null || direccion.right!=null)){                
+                while((!resp.equals("Si") && !resp.equals("si")) && !resp.equals("No")&&!resp.equals("no")){
+                    System.out.println("Asegurese de estar escribiendo bien la orden"); 
+                    System.out.println("Deberas responder estas preguntas escribiendo Si o No (Si) para continuar");
+                    resp=sc.next();                    
+                    
+        }
                 System.out.println(direccion.data);
                 resp=sc.next();
                 direccion=direccion.validarRec(resp, direccion);
                 
                                
             }System.out.println("El animal en el que estas pensando es un "+direccion.data + "?");
+            resp=sc.next();
+            if(resp.equals("Si") || resp.equals("si")){
+                System.out.println("Genial!! gracias por jugar");
+            }else if(resp.equals("no") || resp.equals("No")){
+                System.out.println("Creo que estuve igual cerca");
+                System.out.println("Me esforzare más la proxima vez");
+            }
             break;                                                                                               
             
         }
-        System.out.println(raiz2.left.right.left.data);
-        System.out.println(raiz2.left.left.left.data);
+        //System.out.println(raiz2.left.right.left.data);
+        //System.out.println(raiz2.left.left.left.data);
         /*boolean f= raiz.add(110);
         System.out.println(raiz2.data);
         System.out.println("Si->"+raiz2.left.data);
