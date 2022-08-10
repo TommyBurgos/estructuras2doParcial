@@ -1,30 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
 
 <FlowPane id="fondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="840.0" stylesheets="@inicio.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox prefHeight="460.0" prefWidth="530.0">
+      <AnchorPane>
          <children>
-            <ImageView id="imagenPrincipal" fitHeight="450.0" fitWidth="420.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@bird%20friends.png" />
-               </image>
-            </ImageView>
-            <VBox prefHeight="200.0" prefWidth="110.0">
+            <HBox prefHeight="460.0" prefWidth="530.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hola, soy Patronus" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Piensa en un animal" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Y yo intentaré adivinarlo" />
+                  <ImageView id="imagenPrincipal" fitHeight="450.0" fitWidth="420.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@bird%20friends.png" />
+                     </image>
+                  </ImageView>
+                  <VBox id="vbox" alignment="CENTER" prefHeight="200.0" prefWidth="110.0" stylesheets="@inicio.css">
+                     <children>
+                        <Text id="saludo" strokeWidth="0.0" text="Hola, soy Patronus" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold Italic" size="20.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Piensa en un animal" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Y yo intentaré adivinarlo">
+                           <font>
+                              <Font name="System Bold Italic" size="20.0" />
+                           </font>
+                        </Text>
+                     </children>
+                     <opaqueInsets>
+                        <Insets left="20.0" top="30.0" />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets bottom="150.0" left="30.0" top="150.0" />
+                     </HBox.margin>
+                  </VBox>
                </children>
-            </VBox>
+            </HBox>
          </children>
-      </HBox>
+      </AnchorPane>
+      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+         <children>
+            <HBox alignment="CENTER" prefHeight="140.0" prefWidth="840.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
+               <children>
+                  <Button id="btJugar" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" stylesheets="@inicio.css" text="JUGAR" textAlignment="CENTER">
+                     <font>
+                        <Font name="Century" size="24.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
    </children>
 </FlowPane>

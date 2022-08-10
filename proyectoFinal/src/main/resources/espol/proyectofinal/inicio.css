@@ -9,5 +9,29 @@
 #imagenPrincipal{
     -fx-width:50%;
     -fx-height: 80%
-        
+       
+}
+#vbox{
+  -fx-border-width: 1px;
+  -fx-border-style: solid;
+  -fx-border-color: black;
+  -fx-background-color: #fff;
+  -fx-opacity: .3;
+  -fx-position: relative;
+  -fx-left: 40px;
+  -fx-right: 40px;
+}
+#saludo{
+    -fx-color: blue;
+}
+@keyframes movimiento{
+    0%{
+        -fx-border-radious: 5px #08CED1;
+    }
+}
+#btJugar{
+    -fx-background-color: #08CED1;
+    -fx-boder: 20px #fff;
+    -fx-border-radious: 25px solid #08CED1;
+    
 }
