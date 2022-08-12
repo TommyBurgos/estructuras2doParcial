@@ -99,11 +99,20 @@ public class ArbolAVL<E extends Comparable<E>>   {
         return ad-ai;
     }
     public ArbolAVL validarRec(String resp, ArbolAVL arb){
+        if(arb.left!=null && (resp.equals("Si") || resp.equals("si"))){
+            return arb.left;
+            
+        }else if(arb.right!=null && (resp.equals("No")|| resp.equals("no"))){
+            return arb.right;
+        }
+        else{
+            System.out.println("Lo siento, el animal que has escogido debe de ser de otro universo");
+            System.out.println("No he podido adivinar que animal estas pensando");
+            
+        }
         
-        if(resp.equals("Si") || resp.equals("si")) return arb.left;
-        else if(resp.equals("No")|| resp.equals("no")) return arb.right;
         
-        return null;
+        return arb;
     }
     
     public boolean addRec(E data, ArbolAVL preg){        
@@ -167,6 +176,19 @@ public class ArbolAVL<E extends Comparable<E>>   {
     public ArbolAVL getRight() {
         return right;
     }
+    public static void presentar1(){
+        System.out.println("Listo!! Vamos a empezar");
+        System.out.println("Te hare unas cuantas preguntas antes de decirte mi respuesta");
+        System.out.println("Si deseas salir solo deberas escribir (SALIR) y volveras ");
+        System.out.println("Deberas responder estas preguntas escribiendo Si o No (Escribe Si) para continuar");
+            
+    }
+    public static void bienvenida(String nombre){
+        System.out.println("*******************"+"BIENVENIDO "+nombre+"*******************");
+        System.out.println("Soy Patronus y voy a intentar adivinar el animal que estas pensando");
+        System.out.println("Piensa en un animal");
+        System.out.println("Listo? (Si/No): ");
+    }
     
     
     public static void main(String[] args) {
@@ -190,6 +212,10 @@ public class ArbolAVL<E extends Comparable<E>>   {
         ArbolAVL nodo5=new ArbolAVL(an1);
         nodo3.addRec("Si", nodo5);
         
+        String an5="León";
+        ArbolAVL nodo12=new ArbolAVL(an5);
+        nodo3.addRec("No",nodo12);
+        
         String an2="Venado";
         ArbolAVL nodo7=new ArbolAVL(an2);
         nodo4.addRec("Si", nodo7);
@@ -198,24 +224,34 @@ public class ArbolAVL<E extends Comparable<E>>   {
         //Lado Derecho principal
         ArbolAVL nodo2=new ArbolAVL(p1);
         raiz2.addRec("No", nodo2);
-
+        //Tercer nivel Si
+        ArbolAVL nodo8=new ArbolAVL(p3);
+        nodo2.addRec("Si", nodo8);        
+        //Tercer nivel No
+        ArbolAVL nodo9=new ArbolAVL(p3);
+        nodo2.addRec("No", nodo9);
+        //Nivel final 
+        String an3="Lechuza";
+        ArbolAVL nodo10=new ArbolAVL(an3);
+        nodo8.addRec("No", nodo10);
+        
+        String an4="Paloma";
+        ArbolAVL nodo11=new ArbolAVL(an4);
+        nodo9.addRec("No", nodo11);
         
         raiz.add(100);
         raiz.add(60);
+        
+        
         Scanner sc = new Scanner(System.in);
         System.out.print("Escribe tu nombre: ");
         String nombre=sc.nextLine();
-        System.out.println("*******************"+"BIENVENIDO "+nombre+"*******************");
-        System.out.println("Soy Patronus y voy a intentar adivinar el animal que estas pensando");
-        System.out.println("Piensa en un animal");
-        System.out.println("Listo? (Si/No): ");
+        ArbolAVL.bienvenida(nombre);//Bienvenida
         String continuar=sc.next();
         ArbolAVL direccion=raiz2;
+        
         while(continuar.equals("Si") || continuar.equals("si") && !((continuar.equals("no")|| continuar.equals("No")))){
-            System.out.println("Listo!! Vamos a empezar");
-            System.out.println("Te hare unas cuantas preguntas antes de decirte mi respuesta");
-            System.out.println("Si deseas salir solo deberas escribir (SALIR) y volveras ");
-            System.out.println("Deberas responder estas preguntas escribiendo Si o No (Escribe Si) para continuar");
+            ArbolAVL.presentar1();//Instrucciones            
             String resp=sc.next();
             while(!(resp.equals("Salir")|| resp.equals("salir")) && (direccion.left!=null || direccion.right!=null)){                
                 while((!resp.equals("Si") && !resp.equals("si")) && !resp.equals("No")&&!resp.equals("no")){
@@ -224,6 +260,7 @@ public class ArbolAVL<E extends Comparable<E>>   {
                     resp=sc.next();                    
                     
         }
+                
                 System.out.println(direccion.data);
                 resp=sc.next();
                 direccion=direccion.validarRec(resp, direccion);
