@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<FlowPane id="fondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="840.0" stylesheets="@inicio.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<FlowPane id="fondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="840.0" stylesheets="@inicio.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.proyectofinal.InicioController">
    <children>
       <AnchorPane>
          <children>
@@ -55,7 +55,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="140.0" prefWidth="840.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
                <children>
-                  <Button id="btJugar" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" stylesheets="@inicio.css" text="JUGAR" textAlignment="CENTER">
+                  <Button id="btJugar" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onMouseClicked="#ingresar" stylesheets="@inicio.css" text="JUGAR" textAlignment="CENTER">
                      <font>
                         <Font name="Century" size="24.0" />
                      </font>
