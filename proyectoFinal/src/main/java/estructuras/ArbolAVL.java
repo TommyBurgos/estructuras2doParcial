@@ -5,8 +5,7 @@
 package estructuras;
 
 import java.io.File;
-import java.util.LinkedList;
-import java.util.List;
+
 import java.util.Scanner;
 
 /**
@@ -17,6 +16,12 @@ public class ArbolAVL<E extends Comparable<E>>   {
     private E data;
     ArbolAVL left, right;
 
+    public ArbolAVL() {
+        this.data=null;
+        this.left=this.right=null;
+    }
+        
+    
     public ArbolAVL(E data) {
         this.data=data;
         left=right=null;
@@ -140,8 +145,8 @@ public class ArbolAVL<E extends Comparable<E>>   {
             
         }
     }*/
-    
-    public static LinkedList leerInfo(String nomfile){
+
+    public static LinkedList<String> leerInfoPreguntas(String nomfile){
         File f = new File(nomfile);
         if(f.exists())System.out.println("Existe");
         else{
@@ -152,11 +157,9 @@ public class ArbolAVL<E extends Comparable<E>>   {
             System.out.println("hola Perros");
             while (sc.hasNextLine())
             {
-                String linea = sc.nextLine();               
-                String[] tokens = linea.split(",");                                
-                info.addFirst(tokens);
+                String linea = sc.nextLine();    
                 
-                
+                info.addLast(linea);                                
             }
         }
         catch(Exception e){
@@ -164,6 +167,29 @@ public class ArbolAVL<E extends Comparable<E>>   {
         }
         return info;
 }
+public static LinkedList<String> leerInfo(String nomfile){
+        File f = new File(nomfile);
+        if(f.exists())System.out.println("Existe");
+        else{
+           System.out.println("no Existe");
+        }
+        LinkedList info = new LinkedList<>();
+        try(Scanner sc = new Scanner(new File(nomfile))){
+            System.out.println("hola amigos");
+            while (sc.hasNextLine())
+            {
+                String linea = sc.nextLine();
+                String[] resp=linea.split(" ");
+                
+                info.addLast(resp);                                
+            }
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage()+"aaaaa");
+        }
+        return info;
+}       
+
 
     public E getData() {
         return data;
@@ -192,6 +218,11 @@ public class ArbolAVL<E extends Comparable<E>>   {
     
     
     public static void main(String[] args) {
+        
+        //System.out.println(listaPreguntas.head.getNext());
+        
+        
+        
         ArbolAVL raiz=new ArbolAVL(80);
         ArbolAVL raiz2=new ArbolAVL("Es un mamifero?");
         
@@ -295,6 +326,6 @@ public class ArbolAVL<E extends Comparable<E>>   {
         */
     }
     
-    
+ 
     
 }
