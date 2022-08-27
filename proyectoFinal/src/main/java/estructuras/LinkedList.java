@@ -92,20 +92,17 @@ public class LinkedList<E> implements Serializable {
         return tmp;
     }
     public E get(int index) {
-        if (index < 0)
-			return null;
-		Node n = null;
-		if (head != null) {
-			n = head.getNext();
-			for (int i = 0; i < index; i++) {
-				if (n.getNext() == null)
-					return null;
- 
-				n = n.getNext();
-			}
-			return (E) n.getDato();
-		}
-		return (E) n.getDato();
+        if (index < 0)	return null;
+	Node n = null;
+	if (this.head != null) {
+            n = this.head.getNext();
+            for (int i = 0; i < index; i++) {
+                if (n.getNext() == null) return null;
+            n = n.getNext();
+            }
+	return (E) n.getDato();
+	}
+	return (E) n.getDato();
     }
     public boolean search(E dato){
         Node tmp=head;

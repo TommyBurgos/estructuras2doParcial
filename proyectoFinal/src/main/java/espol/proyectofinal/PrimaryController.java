@@ -4,6 +4,7 @@ import estructuras.ArbolAVL;
 import estructuras.LinkedList;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -43,7 +44,7 @@ public class PrimaryController implements Initializable{
     private Text preguntaTexto;
     
     LinkedList<String> listaPreguntas=ArbolAVL.leerInfoPreguntas("preguntas.txt");   
-    LinkedList<String> listaRespuestas=ArbolAVL.leerInfo("respuestas.txt");   
+    LinkedList<String[]> listaRespuestas=ArbolAVL.leerInfo("respuestas.txt");   
     ArbolAVL raiz2=new ArbolAVL(listaPreguntas.getFirst());
     ArbolAVL direccion=raiz2;
     int nPreg=listaPreguntas.getSize();
@@ -59,7 +60,21 @@ public class PrimaryController implements Initializable{
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       // System.out.println(listaRespuestas.get(0).getClass());
+       // System.out.println(listaRespuestas.get(0).getClass());  
+       LinkedList l2=new LinkedList();
+       l2.addLast(l2);
+       l2.addLast(14);
+       l2.addLast(16);
+       
+        System.out.println(l2.get(0));
+        System.out.println(l2.get(1));
+        System.out.println(l2.get(2));//PROBLEMA CON EL GETr
+        System.out.println(listaPreguntas.get(0));
+        System.out.println(listaPreguntas.get(1));
+        System.out.println(listaPreguntas.get(2));
+        ArbolAVL arbRaiz=ArbolAVL.creaArbol(listaPreguntas, listaRespuestas);
+        
+        
         preguntaTexto.setFont(new Font(28));
         preguntaTexto.setText("LIST@?");                
         ArbolAVL nodo1=new ArbolAVL(listaPreguntas.get(0));        

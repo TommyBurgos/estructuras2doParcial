@@ -4,7 +4,9 @@
  */
 package estructuras;
 
+import estructuras.LinkedList.Node;
 import java.io.File;
+import java.util.ArrayList;
 
 import java.util.Scanner;
 
@@ -69,8 +71,7 @@ public class ArbolAVL<E extends Comparable<E>>   {
                 int feD=this.right.factorEquilibrio();
                 if(feD==1){
                     this.rotacionDerecha();
-                }else if(feD==-1){
-                    
+                }else if(feD==-1){                    
                 }
             }
             if(fe==2){
@@ -167,7 +168,50 @@ public class ArbolAVL<E extends Comparable<E>>   {
         }
         return info;
 }
-public static LinkedList<String> leerInfo(String nomfile){
+    public void aggPreguntas(String preg){    
+        ArbolAVL izq=new ArbolAVL(preg);
+        ArbolAVL der=new ArbolAVL(preg);
+        if(this.left==null){            
+            this.left=izq;                                                
+        } else this.left.aggPreguntas(preg);
+        if(this.right==null){            
+            this.right=der;                                                
+        } else this.right.aggPreguntas(preg);
+        }
+    
+public static ArbolAVL creaArbol(LinkedList<String> preguntas, LinkedList<String[]> respuestas){
+    ArbolAVL arbolTot=new ArbolAVL();
+    if(preguntas.isEmpty()) return null;
+    if(respuestas.isEmpty()) return null;
+    for (int i = 0; i < preguntas.getSize(); i++) {
+        arbolTot.aggPreguntas(preguntas.get(i));                       
+    }
+    System.out.println("Aqui bien");
+    System.out.println(preguntas);
+    System.out.println(respuestas);
+    LinkedList.Node nTemp= respuestas.getHead();
+    for (int i = 0; i < respuestas.getSize()-1; i++) {
+        String resp;        
+        System.out.println(respuestas.get(i)[0]);
+        
+        for (int j = 1; j < respuestas.get(i).length; j++) {
+            System.out.println("HASTA AQUÍ BIEN");
+            resp=(String)respuestas.get(i)[0];
+            System.out.println(resp);            
+            arbolTot= arbolTot.validarRec((String)respuestas.get(i)[j], arbolTot);
+            if(nTemp.getNext()==null){
+                arbolTot.data=resp;
+            }
+        }
+    }
+    
+    
+    
+    //ArbolAVL tmp=arbolTot;
+   
+    return arbolTot;    
+}
+public static LinkedList<String[]> leerInfo(String nomfile){
         File f = new File(nomfile);
         if(f.exists())System.out.println("Existe");
         else{

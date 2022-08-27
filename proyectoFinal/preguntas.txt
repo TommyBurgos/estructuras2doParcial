@@ -1,3 +1,4 @@
+Encabezado
 ¿Es este animal un mamífero?
 ¿Es este animal un carnívoro?
 ¿Se para este animal sobre cuatro patas?

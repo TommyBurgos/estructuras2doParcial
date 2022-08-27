@@ -171,6 +171,7 @@ public class ArbolBinario <E extends Comparable<E>>  {
         }
         return 0;
     }
+        
     
     //TAREA #10
     public boolean esEspejo (ArbolBinario<E> arbol2){
