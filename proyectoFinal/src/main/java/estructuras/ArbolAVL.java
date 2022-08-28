@@ -9,6 +9,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 import java.util.Scanner;
+import java.util.Stack;
 
 /**
  *
@@ -26,7 +27,7 @@ public class ArbolAVL<E extends Comparable<E>>   {
     
     public ArbolAVL(E data) {
         this.data=data;
-        left=right=null;
+        this.left=this.right=null;
     }
     public void rotacionIzquierda(){
         ArbolAVL n1=new ArbolAVL(this.data);
@@ -140,6 +141,79 @@ public class ArbolAVL<E extends Comparable<E>>   {
             return true;
         }
     }
+    
+    public boolean addRec2(LinkedList listaData, ArbolAVL preg){
+        /*LinkedList nueva=new LinkedList();
+        for(int i=1;i<listaData.length;i++) {
+            nueva.addLast(listaData[i]);
+        }*/
+        System.out.println("Esta es la lista :"+listaData.getSize()+listaData);
+        System.out.println("Esto sigue> this.getData: "+this.getData());
+        //System.out.println("Esto sigue> this.getLef.getData: "+this.getLeft().getData());
+        //System.out.println("Esto sigue> this.getLef2.getData: "+this.getLeft().getLeft().getData());
+        System.out.println("primer elemento: "+listaData.get(0));
+        System.out.println("clase elemento: "+listaData.get(0).getClass());
+        System.out.println("comp elemento: "+listaData.get(0).equals("si"));
+            if (listaData.get(0).equals("Si")|| listaData.get(0).equals("si")) {
+                if(this.left==null){
+                    this.left=preg;
+                    System.out.println("Entro al if: "+this.left);
+                    return true;
+                }
+
+                else{
+                    System.out.println("He ingresado al puto else");
+                    listaData.removeFirst();
+                    
+                    return this.left.addRec2(listaData,preg);
+                }
+            } else if(listaData.equals("No")|| listaData.get(0).equals("no")){
+                if(this.right==null){
+                    this.right=preg;
+                    return true;
+                }else{
+                    listaData.removeFirst();
+                    return this.right.addRec2(listaData,preg);
+                }
+            }else{
+                return true;
+            }
+        
+    }
+    
+    public boolean addRec3(LinkedList listaData, ArbolAVL preg){           
+        LinkedList.Node tmp = listaData.getHead();
+        
+        while(tmp.getNext()!=null) {   
+            
+            if(tmp.getDato().equals("Si")){
+                if(this.left==null){
+                    this.left=preg;
+                    tmp=tmp.getNext();
+                    return true;
+                }
+
+                else{
+                    listaData.removeFirst();
+                    return this.left.addRec3(listaData,preg);
+                }
+            }
+            else if(tmp.equals("No")){
+                if(this.right==null){
+                    this.right=preg;
+                    tmp=tmp.getNext();
+                    return true;
+                }else{
+                    listaData.removeFirst();
+                    return this.right.addRec3(listaData,preg);
+                }
+            }
+            else{
+                return true;
+            }
+            
+         }return false;
+    }
     /*public boolean addRec(LinkedList<String> preguntas, LinkedList<String> recorrido){
         
         for (int i = 0; i < recorrido.size(); i++) {
@@ -154,8 +228,7 @@ public class ArbolAVL<E extends Comparable<E>>   {
            System.out.println("no Existe");
         }
         LinkedList info = new LinkedList<>();
-        try(Scanner sc = new Scanner(new File(nomfile))){
-            System.out.println("hola Perros");
+        try(Scanner sc = new Scanner(new File(nomfile))){            
             while (sc.hasNextLine())
             {
                 String linea = sc.nextLine();    
@@ -182,35 +255,76 @@ public class ArbolAVL<E extends Comparable<E>>   {
 public static ArbolAVL creaArbol(LinkedList<String> preguntas, LinkedList<String[]> respuestas){
     ArbolAVL arbolTot=new ArbolAVL();
     if(preguntas.isEmpty()) return null;
-    if(respuestas.isEmpty()) return null;
-    for (int i = 0; i < preguntas.getSize(); i++) {
-        arbolTot.aggPreguntas(preguntas.get(i));                       
-    }
-    System.out.println("Aqui bien");
-    System.out.println(preguntas);
-    System.out.println(respuestas);
-    LinkedList.Node nTemp= respuestas.getHead();
-    for (int i = 0; i < respuestas.getSize()-1; i++) {
-        String resp;        
-        System.out.println(respuestas.get(i)[0]);
+    if(respuestas.isEmpty()) return null;        
+    arbolTot.data=preguntas.get(0);
+    for (int i = 1; i < preguntas.getSize(); i++) {
+        arbolTot.aggPreguntas(preguntas.get(i));
+        System.out.println("Estas son las preguntas " + preguntas.get(i));
+        System.out.println(preguntas.getSize());
         
+    }
+    /*Stack pila=new Stack();
+    for (int i = 0; i < respuestas.getSize()-1; i++) {
         for (int j = 1; j < respuestas.get(i).length; j++) {
-            System.out.println("HASTA AQUÍ BIEN");
-            resp=(String)respuestas.get(i)[0];
-            System.out.println(resp);            
-            arbolTot= arbolTot.validarRec((String)respuestas.get(i)[j], arbolTot);
-            if(nTemp.getNext()==null){
-                arbolTot.data=resp;
-            }
+            
         }
     }
     
-    
-    
+   */
+     System.out.println("HIJOS ARBOL TOMADO");
+    System.out.println(arbolTot.data);
+    System.out.println("Izq: "+arbolTot.left.data);
+    System.out.println("Der: "+arbolTot.right.data);
+    System.out.println("Izq 2: "+arbolTot.left.left.data);
+    System.out.println("Der 2: "+arbolTot.right.right.data);
+    LinkedList.Node nTemp= respuestas.getHead();
+    for (int i = 0; i < respuestas.getSize(); i++) {
+               
+        System.out.println("Respuesta: "+respuestas.get(i)[0]);
+        //ArbolAVL tmp=arbolTot;
+        String resp=(String)respuestas.get(i)[0];
+        ArbolAVL tmp=new ArbolAVL(resp);
+        System.out.println(tmp.getData());
+        LinkedList nueva=new LinkedList();
+        for(int j=1;j<respuestas.get(i).length;j++) {
+            nueva.addLast(respuestas.get(i)[j]);
+            
+        }
+        arbolTot.addRec2(nueva, tmp);
+        /*
+        for (int j = 1; j < respuestas.get(i).length; j++) {
+            System.out.println("HASTA AQUÍ BIEN");            
+            
+            System.out.println(resp);
+            //arbolTot.addRec(resp, tmp);            
+            /*tmp= tmp.validarRec((String)respuestas.get(i)[j], tmp);
+            if(nTemp.getNext()==null){
+                tmp.setData(resp);
+            }nTemp=nTemp.getNext();
+            //nTemp=nTemp.getNext();
+        }*///arbolTot.addRec2(respuestas.get(i),new ArbolAVL((String)resp), nueva);
+    }
+    System.out.println("HIJOS ARBOL TOMADO 2.0");
+    System.out.println("Izq: "+arbolTot.left.data);
+    System.out.println("Der: "+arbolTot.right.data);
+    System.out.println("Izq 2: "+arbolTot.left.left.data);
+    System.out.println("Der 2: "+arbolTot.right.right.data);            
     //ArbolAVL tmp=arbolTot;
    
     return arbolTot;    
 }
+
+    public void setData(E data) {
+        this.data = data;
+    }
+
+    public void setLeft(ArbolAVL left) {
+        this.left = left;
+    }
+
+    public void setRight(ArbolAVL right) {
+        this.right = right;
+    }
 public static LinkedList<String[]> leerInfo(String nomfile){
         File f = new File(nomfile);
         if(f.exists())System.out.println("Existe");
@@ -218,8 +332,7 @@ public static LinkedList<String[]> leerInfo(String nomfile){
            System.out.println("no Existe");
         }
         LinkedList info = new LinkedList<>();
-        try(Scanner sc = new Scanner(new File(nomfile))){
-            System.out.println("hola amigos");
+        try(Scanner sc = new Scanner(new File(nomfile))){            
             while (sc.hasNextLine())
             {
                 String linea = sc.nextLine();
@@ -332,7 +445,7 @@ public static LinkedList<String[]> leerInfo(String nomfile){
                 while((!resp.equals("Si") && !resp.equals("si")) && !resp.equals("No")&&!resp.equals("no")){
                     System.out.println("Asegurese de estar escribiendo bien la orden"); 
                     System.out.println("Deberas responder estas preguntas escribiendo Si o No (Si) para continuar");
-                    resp=sc.next();                    
+                    resp=sc.next();             
                     
         }
                 

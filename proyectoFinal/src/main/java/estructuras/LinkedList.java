@@ -95,10 +95,10 @@ public class LinkedList<E> implements Serializable {
         if (index < 0)	return null;
 	Node n = null;
 	if (this.head != null) {
-            n = this.head.getNext();
+            n = this.head;
             for (int i = 0; i < index; i++) {
                 if (n.getNext() == null) return null;
-            n = n.getNext();
+                n = n.getNext();
             }
 	return (E) n.getDato();
 	}
