@@ -64,17 +64,7 @@ public class PrimaryController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        // System.out.println(listaRespuestas.get(0).getClass());  
-       LinkedList l2=new LinkedList();
-       l2.addLast(12);
-       l2.addLast(14);
-       l2.addLast(16);
-        System.out.println("Hasta aqu[i bien 0");
-        System.out.println(l2.get(0));
-        System.out.println("Hasta aqu[i bien 1");
-        System.out.println(l2.get(1));
-        System.out.println("Hasta aqu[i bien 2");
-        System.out.println(l2.get(2));//PROBLEMA CON EL GETr
-        System.out.println("Hasta aqu[i bien");
+       
         System.out.println(listaPreguntas.get(0));
         System.out.println(listaPreguntas.get(1));
         System.out.println(listaPreguntas.get(2));
@@ -114,7 +104,7 @@ public class PrimaryController implements Initializable{
         System.out.println("Der, Der"+ arbRaiz.getRight().getRight().getData());
           */                      
         preguntaTexto.setFont(new Font(28));
-        preguntaTexto.setText("LIST@?");                
+        preguntaTexto.setText(direccion.getData().toString());                
         ArbolAVL nodo1=new ArbolAVL(listaPreguntas.get(0));        
         raiz2.addRec("Si", nodo1);                  
         ArbolAVL nodo3=new ArbolAVL(listaPreguntas.get(1));       
@@ -124,29 +114,39 @@ public class PrimaryController implements Initializable{
         System.out.println(nPreg);
         sibt.setOnAction(                
                 e -> {
-                    if(direccion.getLeft() !=null || direccion.getRight()!=null){
-                        System.out.println("Inicia: "+direccion.getData());
-                        
-                        preguntaTexto.setText((String)direccion.getData());
+                    if(direccion.getLeft()!=null || direccion.getRight()!=null){
                         direccion=direccion.validarRec("Si", direccion);                                        
-                    
-                        System.out.println("Term: "+direccion.getData());
-                        //System.out.println(direccion.getLeft().getData());
-                        //System.out.println(direccion.getRight().getData());
-                        System.out.println(arbRaiz.getLeft().getLeft().getLeft().getData());
+                        if(direccion.getLeft() !=null || direccion.getRight()!=null){
+                            System.out.println("Inicia: "+direccion.getData());
+
+                            preguntaTexto.setText((String)direccion.getData());
+
+
+                            System.out.println("Term: "+direccion.getData());
+                            //System.out.println(direccion.getLeft().getData());
+                            //System.out.println(direccion.getRight().getData());
+                            System.out.println(arbRaiz.getLeft().getLeft().getLeft().getData());
+                        }else{
+                            preguntaTexto.setText("El animal que estas pensando es un "+ direccion.getData()+"?");
+                            direccion=direccion.validarRec("Si", direccion);                                        
+                        }
                     }else{
-                        preguntaTexto.setText("El animal que estas pensando es un "+ direccion.getData()+"?");
+                        System.out.println("TOY AQUIIIIIIIIIII");
+                        preguntaTexto.setText("GENIAL!! Verdad que soy increible?");
                     }
+                    
                     
                     
                 });
         nobt.setOnAction(                
                 e -> {
+                    if(direccion.getLeft()!=null || direccion.getRight()!=null){
+                      direccion=direccion.validarRec("no", direccion);                                        
                     if(direccion.getLeft() !=null || direccion.getRight()!=null){
                         System.out.println("Inicia: "+direccion.getData());
                         
                         preguntaTexto.setText((String)direccion.getData());
-                        direccion=direccion.validarRec("no", direccion);                                        
+                       
                     
                         System.out.println("Term: "+direccion.getData());
                         System.out.println("Si se ejecuta el no");
@@ -154,7 +154,11 @@ public class PrimaryController implements Initializable{
                        
                     }else{
                         preguntaTexto.setText("El animal que estas pensando es un "+ direccion.getData()+"?");
+                    }  
+                    }else{
+                        preguntaTexto.setText("Debe ser de otro universo!! Me esforzare más la proxima vez");
                     }
+                    
                     
                     
                 
