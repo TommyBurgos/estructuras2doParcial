@@ -88,7 +88,11 @@ public class PrimaryController implements Initializable{
         System.out.println(arbRaiz.getLeft().getRight().getLeft().getData());
         System.out.println(arbRaiz.getRight().getLeft().getRight().getData());
         System.out.println(arbRaiz.getRight().getRight().getRight().getData());
+        System.out.println("Direccion: ");
         System.out.println(direccion.getLeft().getLeft().getLeft().getData());
+        System.out.println(direccion.getLeft().getRight().getLeft().getData());
+        System.out.println(direccion.getRight().getLeft().getRight().getData());
+        System.out.println(direccion.getRight().getRight().getRight().getData());
         //ArbolAVL arbRaiz=ArbolAVL.creaArbol(listaPreguntas, listaRespuestas);
         /*System.out.println("PRINCIPAL..");
         System.out.println(arbRaiz.getData());
