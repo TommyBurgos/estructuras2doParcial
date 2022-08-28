@@ -5,7 +5,10 @@
 package estructuras;
 
 import estructuras.LinkedList.Node;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import java.util.Scanner;
@@ -107,9 +110,11 @@ public class ArbolAVL<E extends Comparable<E>>   {
     }
     public ArbolAVL validarRec(String resp, ArbolAVL arb){
         if(arb.left!=null && (resp.equals("Si") || resp.equals("si"))){
+            ArbolAVL.registrarNuevoRecorrido(resp);
             return arb.left;
             
         }else if(arb.right!=null && (resp.equals("No")|| resp.equals("no"))){
+            ArbolAVL.registrarNuevoRecorrido(resp);
             return arb.right;
         }
         else{
@@ -345,8 +350,56 @@ public static LinkedList<String[]> leerInfo(String nomfile){
             System.out.println(e.getMessage()+"aaaaa");
         }
         return info;
-}       
+}
 
+public static LinkedList<String[]> leerInfo2(String nomfile){
+        File f = new File(nomfile);
+        if(f.exists())System.out.println("Existe");
+        else{
+           System.out.println("no Existe");
+        }
+        LinkedList info = new LinkedList<>();
+        try(Scanner sc = new Scanner(new File(nomfile))){            
+            while (sc.hasNextLine())
+            {
+                String linea = sc.nextLine();
+                String[] resp=linea.split(",");
+                
+                info.addLast(resp);                                
+            }
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage()+"aaaaa");
+        }
+        return info;
+}
+
+public static void registrarNuevoRecorrido(String detalle){
+        try(FileWriter fw = new FileWriter("ayudaRecorrido.txt",true);
+        BufferedWriter bw = new BufferedWriter(fw);
+        PrintWriter out = new PrintWriter(bw)){
+            out.print(detalle+",");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+    }
+}
+public static void registrarNuevoNodo(String pregunta,String respuesta){
+        File tmp=new File("ayudaRecorrido.txt");
+        LinkedList<String[]> datosRegistro=ArbolAVL.leerInfo2("ayudaRecorrido.txt");
+        tmp.delete();
+        try(FileWriter fw = new FileWriter("recorridoNuevo.txt",true);
+        BufferedWriter bw = new BufferedWriter(fw);
+        PrintWriter out = new PrintWriter(bw)){
+            out.print(respuesta);
+            for (String get : datosRegistro.get(0)) {
+                out.print(" "+get);
+            }
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+    }
+}
+    
 
     public E getData() {
         return data;
