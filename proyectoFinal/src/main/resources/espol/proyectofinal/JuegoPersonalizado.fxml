@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="juegoMenu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="367.0" prefWidth="640.0" stylesheets="@menu.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.proyectofinal.JuegoPersonalizadoController">
+   <children>
+      <Button id="sale" layoutX="27.0" layoutY="34.0" mnemonicParsing="false" onMouseClicked="#regresar" stylesheets="@botones.css" text="←" />
+      <Text fx:id="preguntasTxt" fill="#ee8e3a" layoutX="110.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Número de Preguntas: " wrappingWidth="494.13671875">
+         <font>
+            <Font name="Comic Sans MS" size="25.0" />
+         </font>
+         <effect>
+            <DropShadow height="13.75" radius="6.4375" spread="0.88" width="14.0" />
+         </effect>
+      </Text>
+      <ScrollPane layoutX="48.0" layoutY="151.0">
+         <content>
+            <HBox fx:id="respuesta" prefHeight="150.0" prefWidth="200.0" />
+         </content>
+      </ScrollPane>
+      <Text fx:id="preguntasTxt1" fill="#ee8e3a" layoutX="48.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Posible respuesta" wrappingWidth="494.13671875">
+         <font>
+            <Font name="Comic Sans MS" size="25.0" />
+         </font>
+         <effect>
+            <DropShadow height="13.75" radius="6.4375" spread="0.88" width="14.0" />
+         </effect>
+      </Text>
+      <ScrollPane layoutX="282.0" layoutY="102.0">
+         <content>
+            <VBox fx:id="preguntas" alignment="CENTER" prefHeight="192.0" prefWidth="323.0">
+               <children>
+                  <Text fx:id="preguntaTexto" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="258.8033962249756" />
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+      <Button id="sale" fx:id="sibt" layoutX="282.0" layoutY="300.0" mnemonicParsing="false" stylesheets="@botones.css" text="Si" />
+      <Button id="sale" fx:id="nobt" layoutX="555.0" layoutY="300.0" mnemonicParsing="false" stylesheets="@botones.css" text="No" />
+      <ComboBox fx:id="numpreguntas" layoutX="380.0" layoutY="34.0" prefHeight="42.0" prefWidth="64.0" />
+   </children>
+</AnchorPane>

@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 no,Si,Si,Si,Si,Si,Si,no,no,no,no,no,no,
+=======
+no,no,no,no,no,Si,no,no,no,
+>>>>>>> 74c26cd73f7ed1714c5e2e2d3bc549af15ef6228
