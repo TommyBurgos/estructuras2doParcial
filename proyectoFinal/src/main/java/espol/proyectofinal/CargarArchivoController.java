@@ -5,14 +5,24 @@
  */
 package espol.proyectofinal;
 
+import java.io.File;
+import java.io.EOFException;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -36,8 +46,60 @@ public class CargarArchivoController implements Initializable {
 
     @FXML
     private Button resp;
+    
+    
+    
+   
+    //(scanner.nextLine() + "\n");
+            @FXML
+     void getTextRes(MouseEvent event)  throws FileNotFoundException {
+                
+                 FileChooser fileChooser = new FileChooser();
+                File file = fileChooser.showOpenDialog(new Stage());
+                   try{
+                       Scanner scanner = new Scanner(file);
+                       FileWriter writer= new FileWriter("Respuestas2.txt");
+                       while(scanner.hasNextLine()){
+                            writer.write(scanner.nextLine() + "\n");
+                            
+                       
+                   }
+                       System.out.println("se creo el archivo respuestas2");
+                       Alert a = new Alert(Alert.AlertType.CONFIRMATION,"El archivo de respuestas se subió correctamente");
+                       a.show();
+                       writer.close();
+                   }catch(IOException e){
+                       System.out.println("un error con el archivo");
+                       e.printStackTrace();
+                   }
+    
+    }
+     
+     @FXML
+     void getTextPreg(MouseEvent event)  throws FileNotFoundException {
+                
+                 FileChooser fileChooser = new FileChooser();
+                File file = fileChooser.showOpenDialog(new Stage());
+                   try{
+                       Scanner scanner = new Scanner(file);
+                       FileWriter writer= new FileWriter("Preguntas2.txt");
+                       while(scanner.hasNextLine()){
+                            writer.write(scanner.nextLine() + "\n");
+                            
+                       
+                   }
+                       System.out.println("se creo el archivo preguntas2");
+                       Alert a = new Alert(Alert.AlertType.CONFIRMATION,"El archivo de preguntas se subió correctamente");
+                       a.show();
+                       writer.close();
+                   }catch(IOException e){
+                       System.out.println("un error con el archivo");
+                       e.printStackTrace();
+                   }
+    
+    }
 
-  
+
 
     @FXML
     void ingresarJuego(MouseEvent event) throws IOException {

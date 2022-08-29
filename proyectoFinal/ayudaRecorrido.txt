@@ -1,6 +1,13 @@
 <<<<<<< HEAD
+no,no,no,no,no,Si,no,no,no,no,no,no,Si,Si,Si,Si,Si,Si,Si,Si,Si,no,no,no,
+=======
+<<<<<<< HEAD
 no,Si,Si,Si,Si,Si,Si,no,no,no,no,no,no,
 =======
 no,no,no,no,no,Si,no,no,no,
 >>>>>>> 74c26cd73f7ed1714c5e2e2d3bc549af15ef6228
+<<<<<<< HEAD
 Si,no,Si,Si,no,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,no,no,no,no,no,no,no,no,Si,Si,Si,Si,Si,Si,Si,no,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,no,Si,Si,Si,Si,Si,no,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,Si,no,
+=======
+>>>>>>> 930c3a1a450969d187fb5748a09e38a9e2a950ea
+>>>>>>> d54424f0a4517bfae6d0e2dbf81e3c1bba3ff599

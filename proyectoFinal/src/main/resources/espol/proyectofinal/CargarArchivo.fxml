@@ -18,7 +18,7 @@
                      <children>
                         <HBox alignment="CENTER" layoutX="115.0" layoutY="437.0" prefHeight="140.0" prefWidth="322.0" AnchorPane.leftAnchor="115.0" AnchorPane.rightAnchor="483.0">
                            <children>
-                              <Button id="btJugar" fx:id="resp" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" stylesheets="@inicio.css" text="Respuestas" textAlignment="CENTER">
+                              <Button id="btJugar" fx:id="resp" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onMouseClicked="#getTextRes" stylesheets="@inicio.css" text="Respuestas" textAlignment="CENTER">
                                  <font>
                                     <Font name="Century" size="24.0" />
                                  </font>
@@ -27,7 +27,7 @@
                         </HBox>
                         <HBox layoutX="478.0" layoutY="486.0" prefHeight="100.0" prefWidth="323.0">
                            <children>
-                              <Button id="btJugar" fx:id="preg" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" stylesheets="@inicio.css" text="Preguntas" textAlignment="CENTER">
+                              <Button id="btJugar" fx:id="preg" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onMouseClicked="#getTextPreg" stylesheets="@inicio.css" text="Preguntas" textAlignment="CENTER">
                                  <font>
                                     <Font name="Century" size="24.0" />
                                  </font>

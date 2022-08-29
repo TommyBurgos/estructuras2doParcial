@@ -43,8 +43,8 @@ public class JuegoPersonalizadoController implements Initializable{
     @FXML
     private Text preguntaTexto;
     
-    LinkedList<String> listaPreguntas=ArbolAVL.leerInfoPreguntas("preguntas.txt");   
-    LinkedList<String[]> listaRespuestas=ArbolAVL.leerInfo("respuestas.txt");   
+    LinkedList<String> listaPreguntas=ArbolAVL.leerInfoPreguntas("Preguntas2.txt");   
+    LinkedList<String[]> listaRespuestas=ArbolAVL.leerInfo("Respuestas2.txt");   
     ArbolAVL raiz2=new ArbolAVL(listaPreguntas.getFirst());       
     //ArbolAVL direccion=raiz2;
     ArbolAVL arbRaiz=ArbolAVL.creaArbol(listaPreguntas, listaRespuestas);
