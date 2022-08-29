@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -20,6 +21,12 @@ public class InicioController implements Initializable {
      @FXML
     private void ingresar() throws IOException{
         App.setRoot("primary");
+    }
+    
+        @FXML
+    void ingresarPersonalizado(MouseEvent event) throws IOException {
+        App.setRoot("CargarArchivo");
+
     }
 
     /**
