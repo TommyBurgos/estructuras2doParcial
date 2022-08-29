@@ -48,9 +48,11 @@ public class PrimaryController implements Initializable{
     ArbolAVL raiz2=new ArbolAVL(listaPreguntas.getFirst());       
     //ArbolAVL direccion=raiz2;
     ArbolAVL arbRaiz=ArbolAVL.creaArbol(listaPreguntas, listaRespuestas);
+    ArbolAVL arbTmp=ArbolAVL.creaArbolXcant(listaPreguntas, listaRespuestas, 2);
     
     ArbolAVL direccion=arbRaiz;
-    int nPreg=listaPreguntas.getSize();
+    //ArbolAVL direccion=arbTmp;
+    int nPreg=listaPreguntas.getSize()-1;
 
     @FXML
     void regresar(MouseEvent event) throws IOException {
@@ -64,7 +66,7 @@ public class PrimaryController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        // System.out.println(listaRespuestas.get(0).getClass());  
-       
+       /*
         System.out.println(listaPreguntas.get(0));
         System.out.println(listaPreguntas.get(1));
         System.out.println(listaPreguntas.get(2));
@@ -82,7 +84,7 @@ public class PrimaryController implements Initializable{
         System.out.println(direccion.getLeft().getLeft().getLeft().getData());
         System.out.println(direccion.getLeft().getRight().getLeft().getData());
         System.out.println(direccion.getRight().getLeft().getRight().getData());
-        System.out.println(direccion.getRight().getRight().getRight().getData());
+        System.out.println(direccion.getRight().getRight().getRight().getData());*/
         //ArbolAVL arbRaiz=ArbolAVL.creaArbol(listaPreguntas, listaRespuestas);
         /*System.out.println("PRINCIPAL..");
         System.out.println(arbRaiz.getData());
@@ -115,20 +117,29 @@ public class PrimaryController implements Initializable{
         sibt.setOnAction(                
                 e -> {
                     if(direccion.getLeft()!=null || direccion.getRight()!=null){
-                        direccion=direccion.validarRec("Si", direccion);                                        
+                        direccion=direccion.validarRec("Si", direccion);
+                        nPreg-=1;                        
+                        System.out.println("Con fe, con fe: "+direccion.getLeft().getData());
                         if(direccion.getLeft() !=null || direccion.getRight()!=null){
                             System.out.println("Inicia: "+direccion.getData());
 
                             preguntaTexto.setText((String)direccion.getData());
-
+                            
 
                             System.out.println("Term: "+direccion.getData());
                             //System.out.println(direccion.getLeft().getData());
                             //System.out.println(direccion.getRight().getData());
                             System.out.println(arbRaiz.getLeft().getLeft().getLeft().getData());
                         }else{
-                            preguntaTexto.setText("El animal que estas pensando es un "+ direccion.getData()+"?");
-                            direccion=direccion.validarRec("Si", direccion);                                        
+                            if(direccion.esHoja()){
+                                preguntaTexto.setText("El animal que estas pensando es un "+ direccion.getData()+"?");
+                                direccion=direccion.validarRec("Si", direccion);
+                                nPreg-=1;
+                            }else{
+                                System.out.println("Parece que puedo estar necesitando m[as información");
+                                preguntaTexto.setText("Parece que puedo estar necesitando m[as información");
+                            }
+                            
                         }
                     }else{
                         System.out.println("TOY AQUIIIIIIIIIII");
@@ -141,7 +152,8 @@ public class PrimaryController implements Initializable{
         nobt.setOnAction(                
                 e -> {
                     if(direccion.getLeft()!=null || direccion.getRight()!=null){
-                      direccion=direccion.validarRec("no", direccion);                                        
+                      direccion=direccion.validarRec("no", direccion); 
+                      nPreg-=1;
                     if(direccion.getLeft() !=null || direccion.getRight()!=null){
                         System.out.println("Inicia: "+direccion.getData());
                         
@@ -151,9 +163,12 @@ public class PrimaryController implements Initializable{
                         System.out.println("Term: "+direccion.getData());
                         System.out.println("Si se ejecuta el no");
                         System.out.println(arbRaiz.getLeft().getLeft().getLeft().getData());
+                        
                        
                     }else{
                         preguntaTexto.setText("El animal que estas pensando es un "+ direccion.getData()+"?");
+                        direccion=direccion.validarRec("no", direccion);
+                        nPreg-=1;
                     }  
                     }else{
                         preguntaTexto.setText("Debe ser de otro universo!! Me esforzare más la proxima vez");
@@ -166,7 +181,7 @@ public class PrimaryController implements Initializable{
                     
                 });
         //preguntas.getChildren().add(preguntaTexto);
-        ObservableList<Integer> tipos = FXCollections.observableArrayList(5,10,15,20);
+        ObservableList<Integer> tipos = FXCollections.observableArrayList(2,5,10,15,20);
         numpreguntas.setItems(tipos);
         System.out.println("----------");
     } 

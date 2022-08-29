@@ -46,6 +46,42 @@ public class ArbolAVL<E extends Comparable<E>>   {
         this.left=this.left.left;
         this.right=n1;
     }
+    public boolean esHoja(){
+            return this.getRight()==null && this.getLeft()==null;
+    }
+    public int hojas(ArbolAVL arb){
+        int var=0;
+        //Caso Base
+        //Si se define que el nodo ingresado es hoja, retoran 1
+        if(arb.esHoja()){
+            return 1;
+        }else{//Caso Recursivo         
+            if(arb.getLeft()!=null){
+                var +=hojas(arb.getLeft());
+            }
+            if(arb.getRight()!=null){
+                var+=hojas(arb.getRight());
+            }
+        }
+        return var;
+    }
+    public static LinkedList<ArbolAVL> listHojas(ArbolAVL arb){
+        LinkedList listaHojas=new LinkedList();
+        int var=0;
+        //Caso Base
+        //Si se define que el nodo ingresado es hoja, retoran 1
+        if(arb.esHoja()){
+            listaHojas.addLast(arb);
+        }else{//Caso Recursivo         
+            if(arb.getLeft()!=null){
+                listaHojas.addLast(listHojas(arb.getLeft()));
+            }
+            if(arb.getRight()!=null){
+                listaHojas.addLast(listHojas(arb.getRight()));
+            }
+        }
+        return listaHojas;
+    }
     public boolean add(E data){
         boolean insertado=false;
         if(data.compareTo(this.data)<0){
@@ -126,6 +162,27 @@ public class ArbolAVL<E extends Comparable<E>>   {
         
         return arb;
     }
+    
+    public ArbolAVL validarRecXcant(String resp, ArbolAVL arb,int cant){
+        if(cant>0){
+            if(arb.left!=null && (resp.equals("Si") || resp.equals("si"))){
+            ArbolAVL.registrarNuevoRecorrido(resp);
+            return arb.left;
+            
+            }else if(arb.right!=null && (resp.equals("No")|| resp.equals("no"))){
+                ArbolAVL.registrarNuevoRecorrido(resp);
+                return arb.right;
+            }
+            else{
+                System.out.println("Lo siento, el animal que has escogido debe de ser de otro universo");
+                System.out.println("No he podido adivinar que animal estas pensando");
+
+            }
+        }                     
+        return arb;
+    }
+    
+    
     
     public boolean addRec(E data, ArbolAVL preg){        
         if(data.equals("Si")){
@@ -257,27 +314,33 @@ public class ArbolAVL<E extends Comparable<E>>   {
         } else this.right.aggPreguntas(preg);
         }
 public static ArbolAVL creaArbolXcant(LinkedList<String> preguntas, LinkedList<String[]> respuestas, int cant){
+    System.out.println("HOLA ESTOY DENTRO DEL METODO CREAR POR CANTIDAD");
     ArbolAVL arbolTot=new ArbolAVL();
-    if(preguntas.getSize()!=respuestas.getSize())return null;
+    System.out.println(preguntas.getSize());
+    System.out.println(respuestas.getSize());
+    System.out.println(preguntas.getSize()!=respuestas.getSize());
+    //if(preguntas.getSize()!=respuestas.getSize())return null;
+    System.out.println("HOLA ESTOY DENTRO DEL METODO CREAR POR CANTIDAD 2.0");
     if(cant>preguntas.getSize()){
         System.out.println("La cantidad ingresada es mayor a la cantidad de preguntas");
         return null;
     }
     if(preguntas.isEmpty()) return null;
-    if(respuestas.isEmpty()) return null;        
-    arbolTot.data=preguntas.get(0);
+    if(respuestas.isEmpty()) return null; 
     
+    arbolTot.data=preguntas.get(0);
+    System.out.println("He ingresado al metodo por cantidad, todo bien");
     for (int i = 1; i < cant; i++) {
         arbolTot.aggPreguntas(preguntas.get(i));
-        System.out.println("Estas son las preguntas " + preguntas.get(i));
+        System.out.println("Estas son las preguntas del metodo por cantidad: " + preguntas.get(i));
         System.out.println(preguntas.getSize());        
     }   
-    System.out.println("HIJOS ARBOL TOMADO");
+    System.out.println("HIJOS ARBOL TOMADO del metodo por cantidad");
     System.out.println(arbolTot.data);
     System.out.println("Izq: "+arbolTot.left.data);
     System.out.println("Der: "+arbolTot.right.data);
-    System.out.println("Izq 2: "+arbolTot.left.left.data);
-    System.out.println("Der 2: "+arbolTot.right.right.data);
+    //System.out.println("Izq 2: "+arbolTot.left.left.data);
+    //System.out.println("Der 2: "+arbolTot.right.right.data);
     LinkedList.Node nTemp= respuestas.getHead();
     for (int i = 0; i < cant; i++) {
                
@@ -293,11 +356,11 @@ public static ArbolAVL creaArbolXcant(LinkedList<String> preguntas, LinkedList<S
         }
         arbolTot.addRec2(nueva, tmp);        
     }
-    System.out.println("HIJOS ARBOL TOMADO 2.0");
+    System.out.println("HIJOS ARBOL TOMADO por cantidad 2.0");
     System.out.println("Izq: "+arbolTot.left.data);
     System.out.println("Der: "+arbolTot.right.data);
-    System.out.println("Izq 2: "+arbolTot.left.left.data);
-    System.out.println("Der 2: "+arbolTot.right.right.data);            
+    //System.out.println("Izq 2: "+arbolTot.left.left.data);
+    //System.out.println("Der 2: "+arbolTot.right.right.data);            
     //ArbolAVL tmp=arbolTot;   
     return arbolTot;    
 
