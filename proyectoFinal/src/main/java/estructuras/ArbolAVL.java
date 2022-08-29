@@ -256,7 +256,52 @@ public class ArbolAVL<E extends Comparable<E>>   {
             this.right=der;                                                
         } else this.right.aggPreguntas(preg);
         }
+public static ArbolAVL creaArbolXcant(LinkedList<String> preguntas, LinkedList<String[]> respuestas, int cant){
+    ArbolAVL arbolTot=new ArbolAVL();
+    if(preguntas.getSize()!=respuestas.getSize())return null;
+    if(cant>preguntas.getSize()){
+        System.out.println("La cantidad ingresada es mayor a la cantidad de preguntas");
+        return null;
+    }
+    if(preguntas.isEmpty()) return null;
+    if(respuestas.isEmpty()) return null;        
+    arbolTot.data=preguntas.get(0);
     
+    for (int i = 1; i < cant; i++) {
+        arbolTot.aggPreguntas(preguntas.get(i));
+        System.out.println("Estas son las preguntas " + preguntas.get(i));
+        System.out.println(preguntas.getSize());        
+    }   
+    System.out.println("HIJOS ARBOL TOMADO");
+    System.out.println(arbolTot.data);
+    System.out.println("Izq: "+arbolTot.left.data);
+    System.out.println("Der: "+arbolTot.right.data);
+    System.out.println("Izq 2: "+arbolTot.left.left.data);
+    System.out.println("Der 2: "+arbolTot.right.right.data);
+    LinkedList.Node nTemp= respuestas.getHead();
+    for (int i = 0; i < cant; i++) {
+               
+        System.out.println("Respuesta: "+respuestas.get(i)[0]);
+        //ArbolAVL tmp=arbolTot;
+        String resp=(String)respuestas.get(i)[0];
+        ArbolAVL tmp=new ArbolAVL(resp);
+        System.out.println(tmp.getData());
+        LinkedList nueva=new LinkedList();
+        for(int j=1;j<respuestas.get(i).length;j++) {
+            nueva.addLast(respuestas.get(i)[j]);
+            
+        }
+        arbolTot.addRec2(nueva, tmp);        
+    }
+    System.out.println("HIJOS ARBOL TOMADO 2.0");
+    System.out.println("Izq: "+arbolTot.left.data);
+    System.out.println("Der: "+arbolTot.right.data);
+    System.out.println("Izq 2: "+arbolTot.left.left.data);
+    System.out.println("Der 2: "+arbolTot.right.right.data);            
+    //ArbolAVL tmp=arbolTot;   
+    return arbolTot;    
+
+}
 public static ArbolAVL creaArbol(LinkedList<String> preguntas, LinkedList<String[]> respuestas){
     ArbolAVL arbolTot=new ArbolAVL();
     if(preguntas.isEmpty()) return null;
@@ -330,6 +375,8 @@ public static ArbolAVL creaArbol(LinkedList<String> preguntas, LinkedList<String
     public void setRight(ArbolAVL right) {
         this.right = right;
     }
+
+
 public static LinkedList<String[]> leerInfo(String nomfile){
         File f = new File(nomfile);
         if(f.exists())System.out.println("Existe");
